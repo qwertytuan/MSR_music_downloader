@@ -1,6 +1,5 @@
-
 import requests
-
+import webbrowser
 
 
 
@@ -29,4 +28,5 @@ def download(url):
 #main
 url="https://monster-siren.hypergryph.com/api/albums"
 download(url)
-
+new=2
+webbrowser.open("./html/getalbum.html",new=new)
