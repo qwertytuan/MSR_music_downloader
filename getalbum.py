@@ -1,6 +1,6 @@
 import requests
 import webbrowser
-
+import os
 
 
 def download(url):
@@ -12,9 +12,9 @@ def download(url):
           cid = item["cid"]
           name = item["name"]
           cover_url = item["coverUrl"]
-          print(f"CID: {cid}")
-          print(f"Name: {name}")
-          print(f"Cover URL: {cover_url}")
+          # print(f"CID: {cid}")
+          # print(f"Name: {name}")
+          # print(f"Cover URL: {cover_url}")
           with open("./html/output.txt", "a",encoding='utf-8') as file:
             file.write(f"CID: {cid}\nName: {name}\nCover URL: {cover_url}\n\n")
 
@@ -27,6 +27,8 @@ def download(url):
 
 #main
 url="https://monster-siren.hypergryph.com/api/albums"
+if os.path.exists("./html/output.txt"): 
+  os.remove("./html/output.txt")
 download(url)
-new=2
-webbrowser.open("./html/getalbum.html",new=new)
+file =os.path.abspath("html/getalbum.html")
+webbrowser.open(file,new=2)
