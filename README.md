@@ -6,6 +6,7 @@ B2: Chạy file getalbum.html bằng chrome và chọn file output.txt trong fol
 B3: Tìm số CID của album mà bạn muốn tải.
 ###
 B4a:
+
 -Phải có python3...
 
 -Phải có module requests, mutagen, tqdm cài đặt bằng lệnh "pip install requests mutagen tqdm" hoặc "python3 pip install requests mutagen tqdm".
