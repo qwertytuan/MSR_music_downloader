@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data from Local Text File</title>
+    <link rel="stylesheet" href="./test.css">
+    <link rel="stylesheet" href="./style.css">
+    <script>
+function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const text = e.target.result;
+                    const lines = text.split('\n');
+                    const container = document.getElementById('data-container');
+
+                    let item = {};
+                    lines.forEach(line => {
+                        if (line.startsWith('CID:')) {
+                            item.cid = line.split(': ')[1];
+                        } else if (line.startsWith('Name:')) {
+                            item.name = line.split(': ')[1];
+                        } else if (line.startsWith('Cover URL:')) {
+                            item.coverUrl = line.split(': ')[1];
+                            displayItem(item, container);
+                            item = {}; // Reset item for the next entry
+                        }
+                    });
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        function displayItem(item, container) {
+    const itemDiv = document.createElement('div');
+    itemDiv.innerHTML = `
+        <p>CID: ${item.cid}</p>
+        <p>Name: ${item.name}</p>
+        <img src="${item.coverUrl}" width="400">
+        <hr>
+    `;
+    container.appendChild(itemDiv);
+    itemDiv.classList.add('bg-green-200', 'p-4', 'm-4', 'border', 'border-black','block','text-center','text-black','hover:bg-hover-bg','rounded-2xl');
+    // itemDiv.style="border: 1px solid black; margin: 10px; padding: 10px;";
+}
+    </script>
+</head>
+<body>
+    <h1>Display Data from Local Text File</h1>
+    <input type="file" id="file-input" accept=".txt" placeholder="file-input" onchange="handleFileSelect(event)">
+    <div class="flex bg-transparent text-white flex-col">
+        <h1>Display Data from Local Text File</h1>
+        <div id="data-container" class="flex flex-wrap w-full justify-around rounded-2xl">
+        </div>
+    </div>
+</body>
+</html>
