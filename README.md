@@ -6,10 +6,10 @@
 
 # B4a:
 
--Phải có python3...
+## -Phải có python3...
 
--Phải có module requests, mutagen, tqdm cài đặt bằng lệnh trên cmd hoặc terminal 
+## -Phải có module requests, mutagen, tqdm cài đặt bằng lệnh trên cmd hoặc terminal 
 
-`pip install requests mutagen tqdm` hoặc `python3 pip install requests mutagen tqdm`.
+## `pip install requests mutagen tqdm` hoặc `python3 pip install requests mutagen tqdm`.
 
 # B4b: Chạy file downloadmusic.py rồi điền CID của album vào.
