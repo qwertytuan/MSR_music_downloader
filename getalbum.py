@@ -17,8 +17,8 @@ def download(url):
           # print(f"CID: {cid}")
           # print(f"Name: {name}")
           # print(f"Cover URL: {cover_url}")
-        with open("./html/output.txt", "a",encoding='utf-8') as file:
-            file.write(f"CID: {cid}\nName: {name}\nCover URL: {cover_url}\n\n")
+            with open("./html/output.txt", "a",encoding='utf-8') as file:
+                file.write(f"CID: {cid}\nName: {name}\nCover URL: {cover_url}\n\n")
 
     except requests.exceptions.RequestException as e:
         #stop the program when get status code 404
