@@ -5,26 +5,25 @@ from mutagen.wave import WAVE
 from mutagen.id3 import USLT,TPE1, Encoding
 
 
-def getcid(url):
+def getcid(url,choice):
     try:
-        response = requests.get(url, stream=True,timeout=100)
+        response = requests.get(url, stream=True,timeout=10)
         response.raise_for_status()
         data=response.json()['data']
         for item in data:
             cid = item["cid"]
-
             albumurl = "https://monster-siren.hypergryph.com/api/album/"+cid+"/detail"
-            get_song(albumurl)
+            get_song(albumurl,choice)
     except requests.exceptions.RequestException as e:
         #stop the program when get status code 404
         if response.status_code == 404:
             print("finished", response.status_code)
             exit()
         print("Error: ", e)
-
-def get_song(albumurl):
+        
+def get_song(albumurl,choice):
     try:
-        response = requests.get(albumurl,stream=True,timeout=100)
+        response = requests.get(albumurl,stream=True,timeout=10)
         response.raise_for_status()
         data=response.json()
         songs = data['data']['songs']
@@ -40,14 +39,14 @@ def get_song(albumurl):
                     exit()
             if not os.path.exists(albumname+"/lyrcs"):
                 os.makedirs(albumname+"/lyrcs")
-            download(url,albumname)
+            download(url,albumname,choice)
     except requests.exceptions.HTTPError as err:
         print("Error: ", err)
         exit()
 
-def download(url,albumname):
+def download(url,albumname,choice):
     try:
-        response = requests.get(url, stream=True,timeout=100)
+        response = requests.get(url, stream=True,timeout=20)
         response.raise_for_status()
         data=response.json()
         file_name= data['data']['name']
@@ -60,7 +59,7 @@ def download(url,albumname):
         elif checkmp3 == "wav":
          file_name_wav_mp3=file_name+".wav"
         #get song url
-        dwnsong= requests.get(songurl, stream=True,timeout=100)
+        dwnsong= requests.get(songurl, stream=True,timeout=20)
         if dwnsong.status_code == 200:
             print("Song found: "+file_name)
 
@@ -96,7 +95,7 @@ def download(url,albumname):
             lrc = file_name+".lrc"
             # Get the total file size for lyrics
             total_size = int(dwnlrc.headers.get('content-length', 0))
-
+            
             # Download the lyrics with progress bar
             with open(os.path.join(albumname+"/lyrcs",lrc), 'wb') as f, tqdm(
                 desc="Downloading lyrics",
@@ -111,6 +110,10 @@ def download(url,albumname):
                         bar.update(len(chunk))
             if checkmp3 == "wav":
                 add_lyrics_to_wav(file_name_wav_mp3,lrc,artists,albumname)
+                if choice == "y":
+                    print("Lyrics added to the song")
+                else:
+                    os.remove(albumname+"/lyrcs/"+lrc)
             else:
                 return
     except requests.exceptions.RequestException as e:
@@ -124,11 +127,11 @@ def download(url,albumname):
 def add_lyrics_to_wav(file_name_wav_mp3, lrc,artists,albumname):
     # Load the WAV file
     audio = WAVE(os.path.join(albumname,file_name_wav_mp3))
-
+    
     # Create an ID3 tag if it doesn't exist
     if not audio.tags:
         audio.add_tags()
-
+    
     # Add lyrics to the ID3 tag
     with open(os.path.join(albumname+"/lyrcs",lrc), 'r', encoding='utf-8') as lrc:
         lrc = lrc.read()
@@ -152,4 +155,5 @@ def add_lyrics_to_wav(file_name_wav_mp3, lrc,artists,albumname):
 
 #main
 url="https://monster-siren.hypergryph.com/api/albums"
-getcid(url)
+choice=input("Download all lyrics to file? (y/n): ")
+getcid(url,choice)
