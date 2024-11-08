@@ -1,6 +1,7 @@
 import requests
 import subprocess
 
+#download and convert ts files to a file for unix os
 def download_and_convert_ts(url, output_file_prefix, temp_file,file_name,choice):
 
     try:
