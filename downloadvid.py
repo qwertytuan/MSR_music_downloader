@@ -1,8 +1,6 @@
 import requests
 import subprocess
 
-
-
 def download_and_convert_ts(url, output_file_prefix, temp_file,file_name,choice):
 
     try:
@@ -25,8 +23,7 @@ def download_and_convert_ts(url, output_file_prefix, temp_file,file_name,choice)
             exit()
         print("Error downloading TS file:", e)
             
-
-
+#main
 url=input("Enter the url of the video: ")
 file_name=input("Enter the name of the video: ")
 choice=input("Do you want to delete the temp files? (y/n): ")
