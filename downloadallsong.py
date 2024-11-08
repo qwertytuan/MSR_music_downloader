@@ -21,7 +21,7 @@ def getcid(url):
             print("finished", response.status_code)
             exit()
         print("Error: ", e)
-        
+
 def get_song(albumurl):
     try:
         response = requests.get(albumurl,stream=True,timeout=100)
@@ -96,7 +96,7 @@ def download(url,albumname):
             lrc = file_name+".lrc"
             # Get the total file size for lyrics
             total_size = int(dwnlrc.headers.get('content-length', 0))
-            
+
             # Download the lyrics with progress bar
             with open(os.path.join(albumname+"/lyrcs",lrc), 'wb') as f, tqdm(
                 desc="Downloading lyrics",
@@ -124,11 +124,11 @@ def download(url,albumname):
 def add_lyrics_to_wav(file_name_wav_mp3, lrc,artists,albumname):
     # Load the WAV file
     audio = WAVE(os.path.join(albumname,file_name_wav_mp3))
-    
+
     # Create an ID3 tag if it doesn't exist
     if not audio.tags:
         audio.add_tags()
-    
+
     # Add lyrics to the ID3 tag
     with open(os.path.join(albumname+"/lyrcs",lrc), 'r', encoding='utf-8') as lrc:
         lrc = lrc.read()
