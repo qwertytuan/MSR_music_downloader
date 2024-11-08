@@ -1,4 +1,4 @@
-# B1: Chạy file getalbum.py để lưu các albums hiện có của MSR vào file output.txt trong folder html, nếu file tự động mở thì bỏ qua bước 2.
+# B1: Chạy file getalbum.py bằng lệnh python3 <tên file> để lưu các albums hiện có của MSR vào file output.txt trong folder html, nếu file tự động mở thì bỏ qua bước 2.
 
 # B2: Chạy file getalbum.html bằng chrome và chọn file output.txt trong folder html hoặc chạy thẳng file
 
