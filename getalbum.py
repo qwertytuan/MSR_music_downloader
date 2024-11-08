@@ -2,9 +2,6 @@ import os
 import webbrowser
 import requests
 
-
-
-
 def download(url):
     try:
         response = requests.get(url, stream=True,timeout=10)
