@@ -2,10 +2,33 @@ import requests
 import os
 from tqdm import tqdm
 from mutagen.wave import WAVE
-from mutagen.id3 import ID3, USLT,TPE1,TXXX, Encoding
+from mutagen.id3 import USLT,TPE1, Encoding
 
+#function to get song and lyrics
+def get_song(albumurl):
+    try:
+        response = requests.get(albumurl,stream=True)
+        response.raise_for_status()
+        data=response.json()
+        songs = data['data']['songs']
+        albumname = data['data']['name']
+        for song in songs:
+            print(song['cid'])
+            url="https://monster-siren.hypergryph.com/api/song/"+song['cid']+""
+            if not os.path.exists(albumname):
+             if not os.path.exists(albumname):
+                    os.makedirs(albumname)
+             else:
+                    print("Album already exists")
+                    exit()
+            if not os.path.exists(albumname+"/lyrcs"):
+                os.makedirs(albumname+"/lyrcs")
+            download(url,albumname)
+    except requests.exceptions.HTTPError as err:
+        print("Error: ", err)
+        exit()
 
-
+#function to download song and lyrics
 def download(url,albumname):
     try:
         response = requests.get(url, stream=True)
@@ -25,13 +48,7 @@ def download(url,albumname):
         if dwnsong.status_code == 200:
             print("Song found: "+file_name)
 
-        # count = 0
-        # with open(temp, 'wb') as f:
-        #     for chunk in dwnsong.iter_content(chunk_size=1024):
-        #         count += 1
-        #         if chunk:
-        #             f.write(chunk)
-
+        # Get the total file size for the song
         total_size = int(dwnsong.headers.get('content-length', 0))
         if os.path.exists(os.path.join(albumname,temp)):
             os.remove(albumname+"/"+temp)
@@ -85,7 +102,8 @@ def download(url,albumname):
         if response.status_code == 404:
          print("finished", response.status_code)
          exit()
-         
+
+#function to add lyrics to the song that is in wav format
 def add_lyrics_to_wav(file_name_wav_mp3, lrc,artists,albumname):
     # Load the WAV file
     audio = WAVE(os.path.join(albumname,file_name_wav_mp3))
@@ -115,30 +133,7 @@ def add_lyrics_to_wav(file_name_wav_mp3, lrc,artists,albumname):
     audio.save()
     print("Lyrics added to the song")
 
-def get_song(albumurl):
-    try:
-        response = requests.get(albumurl,stream=True)
-        response.raise_for_status()
-        data=response.json()
-        songs = data['data']['songs']
-        albumname = data['data']['name']
-        for song in songs:
-            print(song['cid'])
-            url="https://monster-siren.hypergryph.com/api/song/"+song['cid']+""
-            if not os.path.exists(albumname):
-             if not os.path.exists(albumname):
-                    os.makedirs(albumname)
-             else:
-                    print("Album already exists")
-                    exit()
-            if not os.path.exists(albumname+"/lyrcs"):
-                os.makedirs(albumname+"/lyrcs")
-            download(url,albumname)
-    except requests.exceptions.HTTPError as err:
-        print("Error: ", err)
-        exit()
-
 #main
 url=input("Enter the number of the album: ")
 albumurl = "https://monster-siren.hypergryph.com/api/album/"+url+"/detail"
-get_song(albumurl)
+get_song(albumurl) #=> #download() => add_lyrics_to_wav()
