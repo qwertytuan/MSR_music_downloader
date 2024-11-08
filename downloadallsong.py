@@ -7,7 +7,7 @@ from mutagen.id3 import USLT,TPE1, Encoding
 
 def getcid(url):
     try:
-        response = requests.get(url, stream=True,timeout=10)
+        response = requests.get(url, stream=True,timeout=100)
         response.raise_for_status()
         data=response.json()['data']
         for item in data:
@@ -24,7 +24,7 @@ def getcid(url):
         
 def get_song(albumurl):
     try:
-        response = requests.get(albumurl,stream=True,timeout=10)
+        response = requests.get(albumurl,stream=True,timeout=100)
         response.raise_for_status()
         data=response.json()
         songs = data['data']['songs']
@@ -47,7 +47,7 @@ def get_song(albumurl):
 
 def download(url,albumname):
     try:
-        response = requests.get(url, stream=True,timeout=20)
+        response = requests.get(url, stream=True,timeout=100)
         response.raise_for_status()
         data=response.json()
         file_name= data['data']['name']
@@ -60,7 +60,7 @@ def download(url,albumname):
         elif checkmp3 == "wav":
          file_name_wav_mp3=file_name+".wav"
         #get song url
-        dwnsong= requests.get(songurl, stream=True,timeout=20)
+        dwnsong= requests.get(songurl, stream=True,timeout=100)
         if dwnsong.status_code == 200:
             print("Song found: "+file_name)
 
