@@ -76,10 +76,10 @@ def download(url,albumname):
                     if chunk:
                         f.write(chunk)
                         bar.update(len(chunk))
-            # if checkmp3 == "wav":
-            #     add_lyrics_to_wav(file_name_wav_mp3,lrc,artists,albumname)
-            # else:
-            #     return
+            if checkmp3 == "wav":
+                add_lyrics_to_wav(file_name_wav_mp3,lrc,artists,albumname)
+            else:
+                return
     except requests.exceptions.RequestException as e:
         #stop the program when get status code 404
         if response.status_code == 404:
