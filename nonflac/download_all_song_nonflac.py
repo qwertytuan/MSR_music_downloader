@@ -1,9 +1,10 @@
 import os
-import requests
 import re
-from pydub import AudioSegment
+import requests
 from tqdm import tqdm
-from mutagen.flac import FLAC
+from mutagen.wave import WAVE
+from mutagen.id3 import USLT,TPE1, Encoding
+
 
 def getcid(url,choice):
     try:
@@ -55,9 +56,9 @@ def download(url,albumname,choice):
         temp="temp.wav"
         checkmp3 = songurl.split('.')[-1][-3:]
         if checkmp3 == "mp3":
-         file_name_wav_mp3=file_name+".flac"
+         file_name_wav_mp3=file_name+".mp3"
         elif checkmp3 == "wav":
-         file_name_wav_mp3=file_name+".flac"
+         file_name_wav_mp3=file_name+".wav"
         #get song url
         dwnsong= requests.get(songurl, stream=True,timeout=20)
         if dwnsong.status_code == 200:
@@ -83,14 +84,6 @@ def download(url,albumname,choice):
         if os.path.exists(albumname+"/"+file_name_wav_mp3):
             os.remove(albumname+"/"+file_name_wav_mp3)
         os.rename(os.path.join(albumname,temp), albumname+"/"+file_name_wav_mp3)
-        if checkmp3 == "wav":
-            print("Converting to flac")
-            song = AudioSegment.from_wav(albumname+"/"+file_name_wav_mp3)
-            song.export(albumname+"/"+file_name_wav_mp3,format = "flac")
-        if checkmp3 == "mp3":
-            print("Converting to flac")
-            song = AudioSegment.from_mp3(albumname+"/"+file_name_wav_mp3)
-            song.export(albumname+"/"+file_name_wav_mp3,format = "flac")
         print("Song downloaded")
         #get lyrics url
         lrcurl = data['data']['lyricUrl']
@@ -116,13 +109,15 @@ def download(url,albumname,choice):
                     if chunk:
                         f.write(chunk)
                         bar.update(len(chunk))
-
             remove_last_digit_from_milliseconds(os.path.join(albumname+"/lyrcs",lrc), os.path.join(albumname+"/lyrcs",lrc))
-            add_lyrics_to_flac(file_name_wav_mp3,lrc,artists,albumname)
-            if choice == "y":
-                print("Lyrics added to the song")
-            elif choice == "n":
-                fos.remove(albumname+"/lyrcs/"+lrc)
+            if checkmp3 == "wav":
+                add_lyrics_to_wav(file_name_wav_mp3,lrc,artists,albumname)
+                if choice == "y":
+                    print("Lyrics added to the song")
+                else:
+                    os.remove(albumname+"/lyrcs/"+lrc)
+            else:
+                return
     except requests.exceptions.RequestException as e:
         print("Error: ", e)
         #stop the program when get status code 404
@@ -131,15 +126,34 @@ def download(url,albumname,choice):
          exit()
 
 #function to add lyrics to the song that is in wav format
-def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname):
+def add_lyrics_to_wav(file_name_wav_mp3, lrc,artists,albumname):
     # Load the WAV file
-    audio = FLAC(os.path.join(albumname,file_name_wav_mp3))
-    # Add lyrics
+    audio = WAVE(os.path.join(albumname,file_name_wav_mp3))
+    
+    # Create an ID3 tag if it doesn't exist
+    if not audio.tags:
+        audio.add_tags()
+    
+    # Add lyrics to the ID3 tag
     with open(os.path.join(albumname+"/lyrcs",lrc), 'r', encoding='utf-8') as lrc:
         lrc = lrc.read()
-    audio['lyrics'] = lrc
+    audio.tags.add(
+        USLT(
+            encoding=Encoding.UTF8,
+            lang='eng',
+            desc='Lyrics',
+            text=lrc
+        )
+    )
+    audio.tags.add(
+        TPE1(
+            encoding=Encoding.UTF8,
+            text=artists
+        )
+    )
     # Save the changes
     audio.save()
+    print("Lyrics added to the song")
 
 # Remove the last digit from the milliseconds in the timestamps of the lyrics
 def remove_last_digit_from_milliseconds(lrc_file_path, output_file_path):
