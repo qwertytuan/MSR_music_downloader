@@ -5,8 +5,6 @@ from pydub import AudioSegment
 from tqdm import tqdm
 from mutagen.flac import FLAC
 
-
-
 def getcid(url,choice):
     try:
         response = requests.get(url, stream=True,timeout=10)
@@ -142,7 +140,6 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname):
     audio['lyrics'] = lrc
     # Save the changes
     audio.save()
-    print("Lyrics added to the song")
 
 # Remove the last digit from the milliseconds in the timestamps of the lyrics
 def remove_last_digit_from_milliseconds(lrc_file_path, output_file_path):
