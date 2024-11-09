@@ -1,7 +1,6 @@
-test.py
+test*.py
 */*.wav
 */*.mp3
 */*.flac
 */*/*.lrc
 .hintrc
-.gitignore
