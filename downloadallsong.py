@@ -124,7 +124,7 @@ def download(url,albumname,choice):
             if choice == "y":
                 print("Lyrics added to the song")
             elif choice == "n":
-                os.remove(albumname+"/lyrcs/"+lrc)
+                fos.remove(albumname+"/lyrcs/"+lrc)
     except requests.exceptions.RequestException as e:
         print("Error: ", e)
         #stop the program when get status code 404
