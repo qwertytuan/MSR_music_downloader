@@ -143,6 +143,9 @@ def remove_last_digit_from_milliseconds(lrc_file_path, output_file_path):
         file.write(''.join(cleaned_lyrics))
 
 #main
-url=input("Enter the number of the album: ")
-albumurl = "https://monster-siren.hypergryph.com/api/album/"+url+"/detail"
-get_song(albumurl) #=> #download() => add_lyrics_to_flac()
+url=input("Enter the number of the albums(divided by ','): ")
+url = url.split(",")
+url = [x.strip() for x in url]
+for i in range(len(url)):
+     albumurl = "https://monster-siren.hypergryph.com/api/album/"+url[i]+"/detail"
+     get_song(albumurl) #=> #download() => add_lyrics_to_flac()
