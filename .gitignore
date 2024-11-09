@@ -4,3 +4,5 @@ test*.py
 */*.flac
 */*/*.lrc
 .hintrc
+downloadvid.py
+downloadvidlinux.py
