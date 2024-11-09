@@ -3,6 +3,8 @@
 For windows users that experience `Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning")`
 
 PLEASE Download [ffmpeg](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z) extract and add bin file to system and user PATH in setting "Edit the system environment variables"
+### OR
+USING SCRIPT FROM FOLDER NONFLAC
 ## Step 1: Install Python 3 or later
 Run the command `pip install ffmpeg requests mutagen tqdm pydub` or `python3 pip install ffmpeg requests mutagen tqdm pydub in your terminal`. This will install the necessary Python libraries for this task.
 ## Step 2: Run the getalbum.py script
@@ -19,6 +21,8 @@ Execute the downloadmusic.py script and input the CIDs of the albums you want to
 Ai dùng windows bị tình trạng  `Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning")`
 
 Hãy tải [ffmpeg](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z), giải nén, và thêm file bin vào PATH của system và user trong cài đặt "Edit the system environment variables"
+### HOẶC 
+DÙNG SCRIPT TRONG TỆP NONFLAC
 ## Step 1: Cài python 3. trở lên 
 Chạy lệnh `pip install ffmpeg requests mutagen tqdm pydub` hoặc `python3 pip install ffmpeg requests mutagen tqdm pydub`.
 ## Step 2: Chạy file getalbum.py bằng lệnh python3 <tên file> để lưu các albums hiện có của MSR vào file output.txt trong folder html, nhấn vào chọn file và di chuyển chọn output.txt trong folder html
