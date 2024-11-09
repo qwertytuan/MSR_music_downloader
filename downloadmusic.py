@@ -14,6 +14,7 @@ def get_song(albumurl):
         data=response.json()
         songs = data['data']['songs']
         albumname = data['data']['name']
+        albumname = albumname.replace(" ","_")
         for song in songs:
             print(song['cid'])
             url="https://monster-siren.hypergryph.com/api/song/"+song['cid']+""
