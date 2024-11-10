@@ -4,3 +4,4 @@ test*.py
 */*.flac
 */*/*.lrc
 .hintrc
+*.jpg

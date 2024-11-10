@@ -1,8 +1,8 @@
-import requests
 import os
+import requests
 import re
 from tqdm import tqdm
-from mutagen.flac import FLAC
+from mutagen.flac import FLAC,Picture
 from pydub import AudioSegment
 
 
@@ -14,7 +14,9 @@ def get_song(albumurl):
         data=response.json()
         songs = data['data']['songs']
         albumname = data['data']['name']
+        coverimgurl = data['data']['coverUrl']
         albumname = albumname.replace(" ","_")
+        
         for song in songs:
             print(song['cid'])
             url="https://monster-siren.hypergryph.com/api/song/"+song['cid']+""
@@ -26,13 +28,13 @@ def get_song(albumurl):
                     exit()
             if not os.path.exists(albumname+"/lyrcs"):
                 os.makedirs(albumname+"/lyrcs")
-            download(url,albumname)
+            download(url,albumname,coverimgurl)
     except requests.exceptions.HTTPError as err:
         print("Error: ", err)
         exit()
 
 #function to download song and lyrics
-def download(url,albumname):
+def download(url,albumname,coverimgurl):
     try:
         response = requests.get(url, stream=True)
         response.raise_for_status()
@@ -46,7 +48,31 @@ def download(url,albumname):
          file_name_wav_mp3=file_name+".flac"
         elif checkmp3 == "wav":
          file_name_wav_mp3=file_name+".flac"
-        #get song url
+
+        #get cover image
+        if not os.path.exists(albumname+"/"+"cover.jpg"):
+            download_cover_img= requests.get(coverimgurl, stream=True,timeout=5)
+            if download_cover_img.status_code == 200:
+                print("Cover image found")
+
+            # Get the total file size for the cover image
+            total_size = int(download_cover_img.headers.get('content-length', 0))
+
+            # Download the cover image with progress bar
+            with open(os.path.join(albumname,"cover.jpg"), 'wb') as f, tqdm(
+                desc="Downloading cover image",
+                total=total_size,
+                unit='B',
+                unit_scale=True,
+                unit_divisor=1024,
+            ) as bar:
+                for chunk in download_cover_img.iter_content(chunk_size=1024):
+                    if chunk:
+                        f.write(chunk)
+                        bar.update(len(chunk))
+            coverimg = albumname+"/cover.jpg"
+
+        #get song
         dwnsong= requests.get(songurl, stream=True,timeout=5)
         if dwnsong.status_code == 200:
             print("Song found: "+file_name)
@@ -56,6 +82,7 @@ def download(url,albumname):
         if os.path.exists(os.path.join(albumname,temp)):
             os.remove(albumname+"/"+temp)
             return
+        
         # Download the song with progress bar
         with open(os.path.join(albumname,temp), 'wb') as f, tqdm(
             desc="Downloading song",
@@ -105,8 +132,7 @@ def download(url,albumname):
                         f.write(chunk)
                         bar.update(len(chunk))
             remove_last_digit_from_milliseconds(os.path.join(albumname+"/lyrcs",lrc), os.path.join(albumname+"/lyrcs",lrc))
-
-            add_lyrics_to_flac(file_name_wav_mp3,lrc,artists,albumname)
+            add_lyrics_to_flac(file_name_wav_mp3,lrc,artists,albumname,coverimg)
 
     except requests.exceptions.RequestException as e:
         #stop the program when get status code 404
@@ -116,14 +142,27 @@ def download(url,albumname):
         print("Error: ", e)
 
 #function to add lyrics to the song that is in wav format
-def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname):
+def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
     # Load the WAV file
     audio = FLAC(os.path.join(albumname,file_name_wav_mp3))
 
     # Add lyrics flac
     with open(os.path.join(albumname+"/lyrcs",lrc), 'r', encoding='utf-8') as lrc:
         lrc = lrc.read()
+    audio['artist'] = artists
     audio['lyrics'] = lrc
+    audio['title'] = file_name_wav_mp3.strip(".flac")
+    audio['album'] = albumname
+    
+    # Add cover image
+    if coverimg:
+        image = Picture()
+        with open(coverimg, 'rb') as img_file:
+            image.data = img_file.read()
+        image.type = 3  # Cover (front)
+        image.mime = "image/jpeg"  # or image/png
+        audio.add_picture(image)
+
     # Save the changes
     audio.save()
     print("Lyrics added to the song")
@@ -150,3 +189,4 @@ url = [x.strip() for x in url]
 for i in range(len(url)):
      albumurl = "https://monster-siren.hypergryph.com/api/album/"+url[i]+"/detail"
      get_song(albumurl) #=> #download() => add_lyrics_to_flac()
+     
