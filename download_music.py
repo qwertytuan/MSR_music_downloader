@@ -47,7 +47,8 @@ def download(url,albumname,coverimgurl):
         elif checkmp3 == "wav":
          file_name_wav_mp3=file_name+".flac"
         #get cover image
-        if not os.path.exists(albumname+"/"+"cover.jpg"):
+        coverimg = albumname+"/cover.jpg"
+        if not os.path.exists(coverimg):
             download_cover_img= requests.get(coverimgurl, stream=True,timeout=5)
             if download_cover_img.status_code == 200:
                 print("Cover image found")
@@ -65,7 +66,6 @@ def download(url,albumname,coverimgurl):
                     if chunk:
                         f.write(chunk)
                         bar.update(len(chunk))
-            coverimg = albumname+"/cover.jpg"
         #get song
         dwnsong= requests.get(songurl, stream=True,timeout=5)
         if dwnsong.status_code == 200:
@@ -103,7 +103,7 @@ def download(url,albumname,coverimgurl):
         lrcurl = data['data']['lyricUrl']
         if lrcurl is None:
             print("No lyrics found")
-            add_info_to_flac(file_name_wav_mp3,artists,albumname)
+            add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg)
             return
         else:
             print("Lyrics found")
@@ -155,12 +155,25 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
     audio.save()
     print("Lyrics added to the song")
 
-def add_info_to_flac(file_name_wav_mp3,artists,albumname):
+def add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg):
     # Load the WAV file
     audio = FLAC(os.path.join(albumname,file_name_wav_mp3))
     audio['artist'] = artists
     audio['title'] = file_name_wav_mp3.strip(".flac")
     audio['album'] = albumname
+
+    # Add cover image
+    if coverimg:
+        image = Picture()
+        with open(coverimg, 'rb') as img_file:
+            image.data = img_file.read()
+        image.type = 3  # Cover (front)
+        image.mime = "image/jpeg"  # or image/png
+        audio.add_picture(image)
+    # Save the changes
+    audio.save()
+    print("Lyrics added to the song")
+
     # Save the changes
     audio.save()
 

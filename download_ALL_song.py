@@ -61,6 +61,7 @@ def download(url,albumname,choice,coverimgurl):
         elif checkmp3 == "wav":
          file_name_wav_mp3=file_name+".flac"
          #get cover image
+        coverimg = albumname+"/cover.jpg"
         if not os.path.exists(albumname+"/"+"cover.jpg"):
             #get coverimg
             download_cover_img= requests.get(coverimgurl, stream=True,timeout=5)
@@ -80,7 +81,7 @@ def download(url,albumname,choice,coverimgurl):
                     if chunk:
                         f.write(chunk)
                         bar.update(len(chunk))
-            coverimg = albumname+"/cover.jpg"
+            
         #get song url
         dwnsong= requests.get(songurl, stream=True,timeout=20)
         if dwnsong.status_code == 200:
@@ -118,7 +119,7 @@ def download(url,albumname,choice,coverimgurl):
         lrcurl = data['data']['lyricUrl']
         if lrcurl == None:
             print("No lyrics found")
-            add_info_to_flac(file_name_wav_mp3,artists,albumname)
+            add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg)
             return
         else:
             print("Lyrics found")
@@ -173,12 +174,20 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
     # Save the changes
     audio.save()
 
-def add_info_to_flac(file_name_wav_mp3,artists,albumname):
+def add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg):
     # Load the WAV file
     audio = FLAC(os.path.join(albumname,file_name_wav_mp3))
     audio['artist'] = artists
     audio['title'] = file_name_wav_mp3.strip(".flac")
     audio['album'] = albumname
+    # Add cover image
+    if coverimg:
+        image = Picture()
+        with open(coverimg, 'rb') as img_file:
+            image.data = img_file.read()
+        image.type = 3  # Cover (front)
+        image.mime = "image/jpeg"  # or image/png
+        audio.add_picture(image)
     # Save the changes
     audio.save()
 
