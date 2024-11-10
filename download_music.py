@@ -103,6 +103,7 @@ def download(url,albumname,coverimgurl):
         lrcurl = data['data']['lyricUrl']
         if lrcurl is None:
             print("No lyrics found")
+            add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg)
             return
         else:
             print("Lyrics found")
@@ -153,6 +154,23 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
     # Save the changes
     audio.save()
     print("Lyrics added to the song")
+
+def add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg):
+    # Load the WAV file
+    audio = FLAC(os.path.join(albumname,file_name_wav_mp3))
+    audio['artist'] = artists
+    audio['title'] = file_name_wav_mp3.strip(".flac")
+    audio['album'] = albumname
+    # Add cover image
+    if coverimg:
+        image = Picture()
+        with open(coverimg, 'rb') as img_file:
+            image.data = img_file.read()
+        image.type = 3  # Cover (front)
+        image.mime = "image/jpeg"  # or image/png
+        audio.add_picture(image)
+    # Save the changes
+    audio.save()
 
 # Remove the last digit from the milliseconds in the timestamps of the lyrics
 def remove_last_digit_from_milliseconds(lrc_file_path, output_file_path):
