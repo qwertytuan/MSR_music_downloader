@@ -118,7 +118,7 @@ def download(url,albumname,choice,coverimgurl):
         lrcurl = data['data']['lyricUrl']
         if lrcurl == None:
             print("No lyrics found")
-            add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg)
+            add_info_to_flac(file_name_wav_mp3,artists,albumname)
             return
         else:
             print("Lyrics found")
@@ -173,20 +173,12 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
     # Save the changes
     audio.save()
 
-def add_info_to_flac(file_name_wav_mp3,artists,albumname,coverimg):
+def add_info_to_flac(file_name_wav_mp3,artists,albumname):
     # Load the WAV file
     audio = FLAC(os.path.join(albumname,file_name_wav_mp3))
     audio['artist'] = artists
     audio['title'] = file_name_wav_mp3.strip(".flac")
     audio['album'] = albumname
-    # Add cover image
-    if coverimg:
-        image = Picture()
-        with open(coverimg, 'rb') as img_file:
-            image.data = img_file.read()
-        image.type = 3  # Cover (front)
-        image.mime = "image/jpeg"  # or image/png
-        audio.add_picture(image)
     # Save the changes
     audio.save()
 
