@@ -30,7 +30,6 @@ def get_song(albumurl,choice):
         albumname = data['data']['name']
         coverimgurl = data['data']['coverUrl']
         albumname = albumname.replace(" ","_")
-
         for song in songs:
             print(song['cid'])
             url="https://monster-siren.hypergryph.com/api/song/"+song['cid']+""
@@ -61,17 +60,14 @@ def download(url,albumname,choice,coverimgurl):
          file_name_wav_mp3=file_name+".flac"
         elif checkmp3 == "wav":
          file_name_wav_mp3=file_name+".flac"
-
          #get cover image
         if not os.path.exists(albumname+"/"+"cover.jpg"):
             #get coverimg
             download_cover_img= requests.get(coverimgurl, stream=True,timeout=5)
             if download_cover_img.status_code == 200:
                 print("Cover image found")
-
             # Get the total file size for the cover image
             total_size = int(download_cover_img.headers.get('content-length', 0))
-
             # Download the cover image with progress bar
             with open(os.path.join(albumname,"cover.jpg"), 'wb') as f, tqdm(
                 desc="Downloading cover image",
@@ -85,13 +81,10 @@ def download(url,albumname,choice,coverimgurl):
                         f.write(chunk)
                         bar.update(len(chunk))
             coverimg = albumname+"/cover.jpg"
-
-
         #get song url
         dwnsong= requests.get(songurl, stream=True,timeout=20)
         if dwnsong.status_code == 200:
             print("Song found: "+file_name)
-
         # Get the total file size for the song
         total_size = int(dwnsong.headers.get('content-length', 0))
         if os.path.exists(os.path.join(albumname,temp)):
@@ -132,7 +125,6 @@ def download(url,albumname,choice,coverimgurl):
             lrc = file_name+".lrc"
             # Get the total file size for lyrics
             total_size = int(dwnlrc.headers.get('content-length', 0))
-            
             # Download the lyrics with progress bar
             with open(os.path.join(albumname+"/lyrcs",lrc), 'wb') as f, tqdm(
                 desc="Downloading lyrics",
@@ -145,7 +137,6 @@ def download(url,albumname,choice,coverimgurl):
                     if chunk:
                         f.write(chunk)
                         bar.update(len(chunk))
-
             remove_last_digit_from_milliseconds(os.path.join(albumname+"/lyrcs",lrc), os.path.join(albumname+"/lyrcs",lrc))
             add_lyrics_to_flac(file_name_wav_mp3,lrc,artists,albumname,coverimg)
             if choice == "y":
@@ -170,7 +161,6 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
     audio['lyrics'] = lrc
     audio['title'] = file_name_wav_mp3.strip(".flac")
     audio['album'] = albumname
-    
     # Add cover image
     if coverimg:
         image = Picture()
@@ -179,10 +169,6 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
         image.type = 3  # Cover (front)
         image.mime = "image/jpeg"  # or image/png
         audio.add_picture(image)
-
-
-
-
     # Save the changes
     audio.save()
 
@@ -190,17 +176,13 @@ def add_lyrics_to_flac(file_name_wav_mp3, lrc,artists,albumname,coverimg):
 def remove_last_digit_from_milliseconds(lrc_file_path, output_file_path):
     with open(lrc_file_path, 'r', encoding='utf-8') as file:
         lyrics = file.readlines()
-    
     # Regular expression to match the timestamp and capture the first two digits of milliseconds
     timestamp_pattern = re.compile(r'\[(\d{2}:\d{2}\.\d{2})\d\]')
-    
     # Remove the last digit from the milliseconds in the timestamps
     cleaned_lyrics = [timestamp_pattern.sub(r'[\1]', line) for line in lyrics]
-    
     # Write the cleaned lyrics to a new file
     with open(output_file_path, 'w', encoding='utf-8') as file:
         file.write(''.join(cleaned_lyrics))
-
 #main
 url="https://monster-siren.hypergryph.com/api/albums"
 choice=input("Download all lyrics to file? (y/n): ")
