@@ -87,17 +87,17 @@ def download(url,albumname,coverimgurl):
                 if chunk:
                     f.write(chunk)
                     bar.update(len(chunk))
-        if os.path.exists(albumname+"/"+file_name_wav_mp3):
-            os.remove(albumname+"/"+file_name_wav_mp3)
-        os.rename(os.path.join(albumname,temp), albumname+"/"+file_name_wav_mp3)
+        if os.path.exists(os.path.join(albumname,file_name_wav_mp3)):
+            os.remove(os.path.join(albumname,file_name_wav_mp3))
+        os.rename(os.path.join(albumname,temp), os.path.join(albumname,file_name_wav_mp3))
         if checkmp3 == "wav":
             print("Converting to flac")
-            song = AudioSegment.from_wav(albumname+"/"+file_name_wav_mp3)
-            song.export(albumname+"/"+file_name_wav_mp3,format = "flac")
+            song = AudioSegment.from_wav(os.path.join(albumname,file_name_wav_mp3))
+            song.export(os.path.join(albumname,file_name_wav_mp3),format = "flac")
         if checkmp3 == "mp3":
             print("Converting to flac")
-            song = AudioSegment.from_mp3(albumname+"/"+file_name_wav_mp3)
-            song.export(albumname+"/"+file_name_wav_mp3,format = "flac")
+            song = AudioSegment.from_mp3(os.path.join(albumname,file_name_wav_mp3))
+            song.export(os.path.join(albumname,file_name_wav_mp3),format = "flac")
         print("Song downloaded")
         #get lyrics url
         lrcurl = data['data']['lyricUrl']
