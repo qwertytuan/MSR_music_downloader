@@ -1,3 +1,11 @@
+CID: 7769
+Name: 卫戍协议OST
+Cover URL: https://web.hycdn.cn/siren/pic/20241115/f9a24df5cc05a315fafa85e7d92a54df.png
+
+CID: 3882
+Name: 揭幕者们OST
+Cover URL: https://web.hycdn.cn/siren/pic/20241115/15cd59687a0214a0ce6e1cdc7ca6d42f.jpg
+
 CID: 9370
 Name: Figure It Out
 Cover URL: https://web.hycdn.cn/siren/pic/20241103/f53c6c62e95db718893d7b08e9e872eb.jpg

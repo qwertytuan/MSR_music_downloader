@@ -37,7 +37,7 @@ def download(url,albumname,coverimgurl):
         response = requests.get(url, stream=True)
         response.raise_for_status()
         data=response.json()
-        file_name= data['data']['name']
+        file_name= data['data']['name'].relace("'"," ")
         songurl= data['data']['sourceUrl']
         artists = data['data']['artists']
         temp="temp.wav"
