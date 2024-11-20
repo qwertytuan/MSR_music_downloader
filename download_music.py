@@ -38,6 +38,7 @@ def download(url,albumname,coverimgurl):
         response.raise_for_status()
         data=response.json()
         file_name= data['data']['name'].replace("'"," ")
+        file_name= file_name.replace("?","")
         songurl= data['data']['sourceUrl']
         artists = data['data']['artists']
         temp="temp.wav"
