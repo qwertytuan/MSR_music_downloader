@@ -1,3 +1,67 @@
+CID: 1011
+Name: 萨卡兹的无终奇语OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250401/9654d3c9ae5220526537c280e7b5f69e.jpg
+
+CID: 9378
+Name: ARKnoNIGHTS
+Cover URL: https://web.hycdn.cn/siren/pic/20250401/83fc9e8a75ef3ac003e5d81dbd0f63fd.jpg
+
+CID: 4503
+Name: 促融共竞#1 OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250321/bb8910d94446544eb72a18c94298c3ff.png
+
+CID: 7767
+Name: 挽歌燃烧殆尽OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250314/064565b94947bc4c76b79a8cdca7389c.jpg
+
+CID: 2446
+Name: Final Embrace
+Cover URL: https://web.hycdn.cn/siren/pic/20250306/b899767eb4d25d6e472b7c0e50126e1e.png
+
+CID: 4504
+Name: 我们明日见OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250214/ff1de4a73702cfa15f80141770ce0e54.jpg
+
+CID: 1012
+Name:  Epilogue
+Cover URL: https://web.hycdn.cn/siren/pic/20250214/e3f5e797f73075b90d05051f1527a5e1.png
+
+CID: 9379
+Name: 危机合约净罪作战OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250205/3f621d04b36fe614468fd8b9daf9b7e1.png
+
+CID: 0230
+Name: 相见欢OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250124/c3ece0f3dca2297441e9f788db248be6.png
+
+CID: 5195
+Name: 此时圆
+Cover URL: https://web.hycdn.cn/siren/pic/20250124/3b2cda515620182ff61837c5b7357d82.jpg
+
+CID: 3881
+Name: 烛影暖
+Cover URL: https://web.hycdn.cn/siren/pic/20250123/b0cb9e0947f457a4e1cc1ac9d0623128.jpg
+
+CID: 7768
+Name: 滋味常
+Cover URL: https://web.hycdn.cn/siren/pic/20250122/82559203bc8335358adb31a55681c614.jpg
+
+CID: 6653
+Name: Tranquil Snow
+Cover URL: https://web.hycdn.cn/siren/pic/20241224/191614d800132f7bfe87bc72d254d426.jpg
+
+CID: 2447
+Name: WE
+Cover URL: https://web.hycdn.cn/siren/pic/20241222/9420f633fe3ae59907515fd0b3be6a22.png
+
+CID: 8926
+Name: A Toda Vela
+Cover URL: https://web.hycdn.cn/siren/pic/20241217/da09a31c6fb15759a362fefe175aa680.jpg
+
+CID: 6654
+Name: Sailing For
+Cover URL: https://web.hycdn.cn/siren/pic/20241204/bfd99e9319db1732ac579906afd6ac37.png
+
 CID: 7769
 Name: 卫戍协议OST
 Cover URL: https://web.hycdn.cn/siren/pic/20241115/f9a24df5cc05a315fafa85e7d92a54df.png
