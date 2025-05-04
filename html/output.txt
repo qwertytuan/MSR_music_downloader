@@ -1,3 +1,31 @@
+CID: 7766
+Name: Still the Same
+Cover URL: https://web.hycdn.cn/siren/pic/20250430/94db0d0ca72b66977653601d53447fcc.jpg
+
+CID: 5194
+Name: Sanctuary Inside
+Cover URL: https://web.hycdn.cn/siren/pic/20250430/384e007ed1908ce919a3bf704a5b36ff.png
+
+CID: 9377
+Name: Heavenly Me
+Cover URL: https://web.hycdn.cn/siren/pic/20250430/c7d853aac1c2c5174fc3b900ca185ca1.jpg
+
+CID: 6652
+Name: 争锋频道：青草城OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250427/90654962859f4f53155f7bd2820e2777.png
+
+CID: 0239
+Name: 明日方舟OST5
+Cover URL: https://web.hycdn.cn/siren/pic/20250415/3ce2647bd143f6d49cf58a483e6c9aa8.png
+
+CID: 3880
+Name: From Ash to Fire
+Cover URL: https://web.hycdn.cn/siren/pic/20250415/1b4bd14702f5a86b1f1934addaa0e9e8.png
+
+CID: 8925
+Name: Skeletal Wings 
+Cover URL: https://web.hycdn.cn/siren/pic/20250407/7f2ba3f41347cd5b8b6c37c1f6ca4b99.jpg
+
 CID: 1011
 Name: 萨卡兹的无终奇语OST
 Cover URL: https://web.hycdn.cn/siren/pic/20250401/9654d3c9ae5220526537c280e7b5f69e.jpg
