@@ -5,3 +5,6 @@ test*.py
 */*/*.lrc
 .hintrc
 *.jpg
+.venv/
+.venv/*
+
