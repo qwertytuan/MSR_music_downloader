@@ -1,3 +1,11 @@
+CID: 0238
+Name: 矢量突破无机物OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250517/88e0d3b0df30fbccaf465ba3d5bef294.jpg
+
+CID: 5193
+Name: 众生行记OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250503/442447d720d24768d56470c3f5f4b261.jpg
+
 CID: 7766
 Name: Still the Same
 Cover URL: https://web.hycdn.cn/siren/pic/20250430/94db0d0ca72b66977653601d53447fcc.jpg
