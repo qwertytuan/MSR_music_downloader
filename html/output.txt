@@ -1,3 +1,67 @@
+CID: 2444
+Name: 无忧梦呓OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250905/2039eb5cf7f7d3a951d5f653c6d33f64.jpg
+
+CID: 5192
+Name: 焰烬曙明OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250905/6e32685dcc113791d9e90c14e18634c6.jpg
+
+CID: 1019
+Name: in your blue eyes
+Cover URL: https://web.hycdn.cn/siren/pic/20250903/63d83dcec8698fde96edcd039d9f4fcf.jpg
+
+CID: 6650
+Name: 危机合约弧光作战OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250815/b8d96b5a639810d09f0a606d72776abe.png
+
+CID: 7765
+Name: Truth
+Cover URL: https://web.hycdn.cn/siren/pic/20250815/621d03dd6ec56d73c56f8eee89f5f854.png
+
+CID: 4501
+Name: 墟OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250804/209076efcc7fee2c367ab5a45116ad18.png
+
+CID: 3888
+Name: Little Wish
+Cover URL: https://web.hycdn.cn/siren/pic/20250801/7d4b586dddf00b4e2a43c809f3fe4b45.jpg
+
+CID: 8923
+Name: Undaunted
+Cover URL: https://web.hycdn.cn/siren/pic/20250801/f4eb71aff64dd4ede0ddf843d7f8b462.png
+
+CID: 0237
+Name: 音律联觉-熠曲丰碑原声EP
+Cover URL: https://web.hycdn.cn/siren/pic/20250724/0ed6044d7c5953179968a7762f7bcb64.png
+
+CID: 9376
+Name: Summer Fizz Pop
+Cover URL: https://web.hycdn.cn/siren/pic/20250723/77893fe5f44568adf1adc7beae2ad06f.png
+
+CID: 8924
+Name: 镜中集OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250709/b03624911f37f76a7fcd577033dd2db6.jpg
+
+CID: 4502
+Name: 惊蛰时
+Cover URL: https://web.hycdn.cn/siren/pic/20250707/fdd8e8e414c57ddbb350a6c6f890d731.jpg
+
+CID: 3889
+Name: Mare Natus
+Cover URL: https://web.hycdn.cn/siren/pic/20250625/fc58e64b2a2d91e264d6bc0a42ae4a8b.png
+
+CID: 1010
+Name: Grow on My Time
+Cover URL: https://web.hycdn.cn/siren/pic/20250606/02da85b2cc73f426ef6cfec4910d31d9.jpg
+
+CID: 2445
+Name: 红丝绒OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250606/0055240efea9235e4a4c7d4717676f74.jpg
+
+CID: 6651
+Name: The After
+Cover URL: https://web.hycdn.cn/siren/pic/20250605/020128cb9ff8459586e9e2ae94e859eb.png
+
 CID: 0238
 Name: 矢量突破无机物OST
 Cover URL: https://web.hycdn.cn/siren/pic/20250517/88e0d3b0df30fbccaf465ba3d5bef294.jpg
