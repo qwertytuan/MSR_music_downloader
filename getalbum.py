@@ -24,10 +24,10 @@ def download(url):
             exit()
         print("Error: ", e)
         
-#main
-url="https://monster-siren.hypergryph.com/api/albums"
-if os.path.exists("./html/output.txt"): 
-    os.remove("./html/output.txt")
-download(url)
-file =os.path.abspath("html/getalbum.html")
-webbrowser.open(file,new=2)
+def init():
+    url="https://monster-siren.hypergryph.com/api/albums"
+    if os.path.exists("./html/output.txt"): 
+        os.remove("./html/output.txt")
+    download(url)
+    file =os.path.abspath("html/getalbum.html")
+    webbrowser.open(file,new=2)

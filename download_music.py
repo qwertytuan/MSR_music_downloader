@@ -4,7 +4,7 @@ import re
 from tqdm import tqdm
 from mutagen.flac import FLAC,Picture
 from pydub import AudioSegment
-
+from getalbum import init
 #function to get song and lyrics
 def get_song(albumurl):
     try:
@@ -190,6 +190,7 @@ def remove_last_digit_from_milliseconds(lrc_file_path, output_file_path):
     with open(output_file_path, 'w', encoding='utf-8') as file:
         file.write(''.join(cleaned_lyrics))
 #main
+init()
 url=input("Enter the number of the albums(divided by ','): ")
 url = url.split(",")
 url = [x.strip() for x in url]

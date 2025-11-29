@@ -1,3 +1,47 @@
+CID: 3886
+Name: Secret Escape
+Cover URL: https://web.hycdn.cn/siren/pic/20251121/7bcc152e62b7951e0ecff7b349b5fdab.png
+
+CID: 7764
+Name: 卫戍协议盟约OST
+Cover URL: https://web.hycdn.cn/siren/pic/20251114/7e153e074f468894e15d0ad60b58e0cb.png
+
+CID: 8922
+Name: 雪山降临1101 OST
+Cover URL: https://web.hycdn.cn/siren/pic/20251104/920dbf50e9d1e90042d20b25345413d7.jpg
+
+CID: 6659
+Name: Follow Your Heart
+Cover URL: https://web.hycdn.cn/siren/pic/20251031/eb091514a2ff59802d0630846fd16897.png
+
+CID: 4500
+Name: Stardust on Me
+Cover URL: https://web.hycdn.cn/siren/pic/20251031/2d342a26414cf8089429f4e5b91a6972.png
+
+CID: 9375
+Name: The Walk
+Cover URL: https://web.hycdn.cn/siren/pic/20251031/27a2d90daa909e6deb391ba34dc4d95a.png
+
+CID: 5191
+Name: 促融共竞#2 OST
+Cover URL: https://web.hycdn.cn/siren/pic/20251024/d3ef7ab00c9f3df5aca264dc2057a9c8.png
+
+CID: 1018
+Name: Paper Boat
+Cover URL: https://web.hycdn.cn/siren/pic/20251017/2166112321795c68c27b84e368d26b1a.jpg
+
+CID: 2443
+Name: 反常光谱OST
+Cover URL: https://web.hycdn.cn/siren/pic/20251010/38c4ac111c8e0228be255645b299a7d8.jpg
+
+CID: 3887
+Name: Sealed
+Cover URL: https://web.hycdn.cn/siren/pic/20251009/1aed059af94f8938bfbf117f413dad56.png
+
+CID: 0236
+Name: 次生预案OST
+Cover URL: https://web.hycdn.cn/siren/pic/20250926/4774ab1923b14922b13cfb99698495f7.jpg
+
 CID: 2444
 Name: 无忧梦呓OST
 Cover URL: https://web.hycdn.cn/siren/pic/20250905/2039eb5cf7f7d3a951d5f653c6d33f64.jpg
